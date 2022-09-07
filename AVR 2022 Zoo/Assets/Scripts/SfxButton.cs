@@ -5,17 +5,17 @@ using UnityEngine;
 public class SfxButton : MonoBehaviour
 {
     public GameObject objParent;
-    public AudioSource itemOne;
-    public AudioSource itemTwo;
-    public AudioSource itemThree;
+    private AudioSource itemOne;
+    private AudioSource itemTwo;
+    private AudioSource itemThree;
 
     bool sFXButton = false;
 
     public void Start()
     {
-        //itemOne = objParent.transform.GetChild(0).gameObject.AudioSource;
-        //itemTwo = objParent.transform.GetChild(0).gameObject.AudioSource;
-        //itemThree = objParent.transform.GetChild(0).gameObject.AudioSource;
+        itemOne = objParent.transform.GetChild(0).GetComponent<AudioSource>();
+        itemTwo = objParent.transform.GetChild(0).GetComponent<AudioSource>();
+        itemThree = objParent.transform.GetChild(0).GetComponent<AudioSource>();
     }
 
     public void SFXToggle()
@@ -37,27 +37,36 @@ public class SfxButton : MonoBehaviour
         {
             if (objParent.transform.GetChild(0).gameObject.activeInHierarchy)
             {
-                //infoText.text = "Obj1";
-                //SfxPlay.gameObject.SetActive(true);
-                //objParent.transform.GetChild(0).gameObject.transform.AudioSource;
+                itemOne.Play();
             }
 
             else if (objParent.transform.GetChild(1).gameObject.activeInHierarchy)
             {
-                //infoText.text = "Obj2";
-                //SfxPlay.gameObject.SetActive(true);
+                itemTwo.Play();
             }
 
             else if (objParent.transform.GetChild(2).gameObject.activeInHierarchy)
             {
-                //infoText.text = "Obj3";
-                //SfxPlay.gameObject.SetActive(true);
+                itemThree.Play();
             }
         }
 
         if (sFXButton == false)
         {
-            //infoPanel.gameObject.SetActive(false);
+            if (objParent.transform.GetChild(0).gameObject.activeInHierarchy)
+            {
+                itemOne.Stop();
+            }
+
+            else if (objParent.transform.GetChild(1).gameObject.activeInHierarchy)
+            {
+                itemTwo.Stop();
+            }
+
+            else if (objParent.transform.GetChild(2).gameObject.activeInHierarchy)
+            {
+                itemThree.Stop();
+            }
         }
     }
 }
